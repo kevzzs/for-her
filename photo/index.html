@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For u</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to bottom right, #fce1ec, #f9c5d1);
+        font-family: "Pacifico", cursive;
+        overflow-x: hidden;
+      }
+
+      /* Back Button */
+      .back-btn {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background: rgba(255, 182, 193, 0.9);
+        color: #5a3e36;
+        padding: 10px 16px;
+        border-radius: 20px;
+        text-decoration: none;
+        z-index: 10;
+        font-size: 1rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Timeline Layout */
+      .timeline {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        align-items: center;
+        padding: 70px 20px;
+        gap: 30px;
+        justify-content: space-around;
+        text-align: center;
+      }
+
+      /* Photo Frame */
+      .photo-box {
+        background: #fff;
+        padding: 15px;
+        max-width: 400px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        animation: fadeIn 1s ease forwards;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      .photo-box img {
+        width: 100%;
+        height: auto; /* or 250px */
+        object-fit: cover;
+      }
+
+      /* Caption */
+      .caption {
+        font-size: 1.1rem;
+        color: #7c4b5f;
+        margin-top: 15px;
+        font-style: italic;
+      }
+
+      /* Animation */
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .gallery-heading {
+        text-align: center;
+        font-size: 1.8rem;
+        margin-top: 100px;
+        margin-bottom: 40px;
+        padding: 0 20px;
+        color: #8b4a57; /* Romantic plum */
+        font-family: "Pacifico", cursive;
+        line-height: 1.4;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Back Button -->
+    <a href="/letterForSomeone/main/index.html" class="back-btn">← Back</a>
+
+    <!-- Music -->
+    <audio src="/letterForSomeone/photo/image/Again - Your Lie in April OST [Piano Tutorial] - PianoDeuss.mp3" autoplay loop></audio>
+
+    <h1 class="gallery-heading">
+      "You deserve to be framed like art - timeless, soft, and adored."
+    </h1>
+
+    <!-- Timeline Container -->
+    <div class="timeline">
+      <div class="photo-box">
+        <img src="/letterForSomeone/photo/image/1.jpg" alt="Photo 1" />
+        <p class="caption">You smiled like the world finally made sense.</p>
+      </div>
+
+      <div class="photo-box">
+        <img src="/letterForSomeone/photo/image/2.jpg" alt="Photo 2" />
+        <p class="caption">They say art is rare — and you’re proof.</p>
+      </div>
+
+      <div class="photo-box">
+        <img src="/letterForSomeone/photo/image/3.jpg" alt="Photo 3" />
+        <p class="caption">This moment? Worth a thousand quiet admirations.</p>
+      </div>
+      <div class="photo-box">
+        <img src="/letterForSomeone/photo/image/1.jpg" alt="Photo 3" />
+        <p class="caption">This moment? Worth a thousand quiet admirations.</p>
+      </div>
+      <div class="photo-box">
+        <img src="/letterForSomeone/photo/image/3.jpg" alt="Photo 3" />
+        <p class="caption">This moment? Worth a thousand quiet admirations.</p>
+      </div>
+      <div class="photo-box">
+        <img src="/letterForSomeone/photo/image/2.jpg" alt="Photo 3" />
+        <p class="caption">This moment? Worth a thousand quiet admirations.</p>
+      </div>
+      <div class="photo-box">
+        <img src="/letterForSomeone/photo/image/3.jpg" alt="Photo 3" />
+        <p class="caption">This moment? Worth a thousand quiet admirations.</p>
+      </div>
+      <div class="photo-box">
+        <img src="/letterForSomeone/photo/image/2.jpg" alt="Photo 3" />
+        <p class="caption">This moment? Worth a thousand quiet admirations.</p>
+      </div>
+
+      <!-- Add more photo-box divs for each photo -->
+    </div>
+  </body>
+</html>

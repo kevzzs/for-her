@@ -1,0 +1,69 @@
+body {
+    margin: 0;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    overflow: hidden;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Stars */
+.stars::before,
+.shooting-stars::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    box-shadow:
+        1000px 200px white, 500px 300px white, 300px 100px white,
+        150px 400px white, 700px 250px white, 1200px 150px white,
+        400px 500px white, 900px 600px white, 200px 700px white;
+    animation: twinkle 5s infinite ease-in-out alternate;
+}
+
+/* Shooting stars (basic animation) */
+@keyframes twinkle {
+    0%   { opacity: 0.2; }
+    100% { opacity: 1; }
+}
+
+/* Make canvas full screen */
+#starsCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+}
+
+/* Center Button */
+.centered-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#clickBtn {
+    padding: 1.1rem 2.5rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    color: white;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+#clickBtn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.hidden {
+    display: none;
+}
