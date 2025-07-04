@@ -1,83 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For u</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For u</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  background: linear-gradient(to bottom right, #f9c5d1, #fbc2eb);
-  overflow-x: hidden; /* keep horizontal clean, allow vertical scroll */
-  font-family: 'Cedarville Cursive', cursive;
-}
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        background: linear-gradient(to bottom right, #f9c5d1, #fbc2eb);
+        overflow-x: hidden; /* keep horizontal clean, allow vertical scroll */
+        font-family: "Cedarville Cursive", cursive;
+      }
 
-/* Envelope Center */
-.envelope-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.envelope-container img {
-  width: 180px;
-  cursor: pointer;
-  transition: transform 0.4s ease;
-}
-.envelope-container img:hover {
-  transform: scale(1.05);
-}
+      /* Envelope Center */
+      .envelope-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .envelope-container img {
+        width: 180px;
+        cursor: pointer;
+        transition: transform 0.4s ease;
+      }
+      .envelope-container img:hover {
+        transform: scale(1.05);
+      }
 
-/* Letter Reveal */
-.letter {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  max-width: 600px;
-  animation: pop 1s ease forwards;
-  z-index: 5;
-}
-.paper-bg {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: -1;
-  border-radius: 8px;
-}
-.letter-text {
-  padding: 3rem 2rem;
-  color: #3e2f1c;
-  font-size: 1.2rem;
-  line-height: 2;
-  font-style: italic;
-  height: 100%;
-  overflow-y: auto;
-  z-index: 2;
-  position: relative;
-}
-.hidden {
-  display: none;
-}
-@keyframes pop {
-  0% { transform: translateX(-50%) scale(0); opacity: 0; }
-  100% { transform: translateX(-50%) scale(1); opacity: 1; }
-}
+      /* Letter Reveal */
+      .letter {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        max-width: 600px;
+        animation: pop 1s ease forwards;
+        z-index: 5;
+      }
+      .paper-bg {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
+        border-radius: 8px;
+      }
+      .letter-text {
+        padding: 3rem 2rem;
+        color: #3e2f1c;
+        font-size: 1.2rem;
+        line-height: 2;
+        font-style: italic;
+        height: 100%;
+        overflow-y: auto;
+        z-index: 2;
+        position: relative;
+      }
+      .hidden {
+        display: none;
+      }
+      @keyframes pop {
+        0% {
+          transform: translateX(-50%) scale(0);
+          opacity: 0;
+        }
+        100% {
+          transform: translateX(-50%) scale(1);
+          opacity: 1;
+        }
+      }
 
-/* Fullscreen Canvas */
-#petalCanvas {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
+      /* Fullscreen Canvas */
+      #petalCanvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
 
-    .back-btn {
+      .back-btn {
         position: fixed;
         top: 20px;
         left: 20px;
@@ -86,132 +96,164 @@
         padding: 10px 16px;
         border-radius: 20px;
         text-decoration: none;
-        font-family: 'Cedarville Cursive', cursive;
+        font-family: "Cedarville Cursive", cursive;
         font-size: 1rem;
         z-index: 10;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         transition: background 0.3s;
-    }
+      }
 
-.back-btn:hover {
-  background: rgba(255, 182, 193, 0.8);
-}
-
+      .back-btn:hover {
+        background: rgba(255, 182, 193, 0.8);
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <!-- Music -->
+    <audio
+      id="bgMusic"
+      src="/letter/images/[MV] CHEN(첸)XPunch(펀치) - Everytime l Descendants of the Sun 태양의 후예 OST - MUSIC&NEW 뮤직앤뉴.mp3"
+      autoplay
+      loop
+    ></audio>
 
-  <!-- Music -->
-  <audio id="bgMusic" src="/letterForSomeone/letter/images/[MV] CHEN(첸)XPunch(펀치) - Everytime l Descendants of the Sun 태양의 후예 OST - MUSIC&NEW 뮤직앤뉴.mp3" autoplay loop></audio>
+    <!-- Petals Canvas -->
+    <canvas id="petalCanvas"></canvas>
 
-  <!-- Petals Canvas -->
-  <canvas id="petalCanvas"></canvas>
+    <a href="/main/index.html" class="back-btn">← Back</a>
+    <!-- Envelope -->
+    <div class="envelope-container">
+      <img
+        src="/letter/images/envelope.png"
+        alt="Envelope"
+        id="envelope"
+      />
+    </div>
 
-
-  <a href="/letterForSomeone/main/index.html" class="back-btn">← Back</a>
-  <!-- Envelope -->
-  <div class="envelope-container">
-    <img src="/letterForSomeone/letter/images/envelope.png" alt="Envelope" id="envelope">
-  </div>
-
-  <!-- Letter -->
-  <div class="letter hidden" id="letter">
-    <img src="/letterForSomeone/letter/images/paper.png" class="paper-bg" />
-    <div class="letter-text">
-      <p>Dear Keith,</p>
+    <!-- Letter -->
+    <div class="letter hidden" id="letter">
+      <img src="/letter/images/paper.png" class="paper-bg" />
+      <div class="letter-text">
+        <p>Dear Keith,</p>
         <p>
-          Happy Birthday!!!!✨  
-          I know this isn’t the usual kind of gift because it’s not wrapped in ribbon, or handed with flowers… but I hope this letter makes you feel just a little more seen today. Because if there’s anyone who deserves to feel remembered and valued on their special day, it’s you.
+          Happy Birthday!!!!✨ I know this isn’t the usual kind of gift because
+          it’s not wrapped in ribbon, or handed with flowers… but I hope this
+          letter makes you feel just a little more seen today. Because if
+          there’s anyone who deserves to feel remembered and valued on their
+          special day, it’s you.
         </p>
         <p>
-          I know this might feel strange, a letter with no return address, no name, no expectations. But maybe that’s what makes it honest. I just wanted to give you something you once said you never had: a real letter, something soft, something that reminds you that you’re worth remembering. . No letter, no flowers, no photos that felt like you mattered.
+          I know this might feel strange, a letter with no return address, no
+          name, no expectations. But maybe that’s what makes it honest. I just
+          wanted to give you something you once said you never had: a real
+          letter, something soft, something that reminds you that you’re worth
+          remembering. . No letter, no flowers, no photos that felt like you
+          mattered.
         </p>
 
         <p>
-          I remember you once said you've never received flowers, handwritten letters, or even photos that felt special, and for some reason, that stayed with me. You're the one always providing for your partner, to the point that you forgot about yourself, and when I found out, I didn’t know but suddenly my feelings became heavy knowing that you deserved better. So I made this. Not to impress, but to offer something that should’ve been yours a long time ago.
+          I remember you once said you've never received flowers, handwritten
+          letters, or even photos that felt special, and for some reason, that
+          stayed with me. You're the one always providing for your partner, to
+          the point that you forgot about yourself, and when I found out, I
+          didn’t know but suddenly my feelings became heavy knowing that you
+          deserved better. So I made this. Not to impress, but to offer
+          something that should’ve been yours a long time ago.
         </p>
 
         <p>
-          You deserve to feel appreciated. You deserve a moment to remember that your mere existence can brighten someone’s day, even if you remain oblivious to it. That someone is quietly adoring the way you smile, the manner in which you speak about your passions, the way you become alive when you embrace your true self.
+          You deserve to feel appreciated. You deserve a moment to remember that
+          your mere existence can brighten someone’s day, even if you remain
+          oblivious to it. That someone is quietly adoring the way you smile,
+          the manner in which you speak about your passions, the way you become
+          alive when you embrace your true self.
         </p>
 
         <p>
-          This page, this letter, this little act, they encapsulate the things I could never express vocally. Not for fear of rejection, but because I want to maintain the untainted nature of this emotion. There is no burden, no anticipated outcome, only a singular fact: you are worthy of gentle things and love that is calm, whispers of this that are not only from someone who loves you, but even from someone who deeply cares and stays at a distance.
+          This page, this letter, this little act, they encapsulate the things I
+          could never express vocally. Not for fear of rejection, but because I
+          want to maintain the untainted nature of this emotion. There is no
+          burden, no anticipated outcome, only a singular fact: you are worthy
+          of gentle things and love that is calm, whispers of this that are not
+          only from someone who loves you, but even from someone who deeply
+          cares and stays at a distance.
         </p>
 
         <p>
-          So on this day, i want to leave something behind, a little piece of love the world owes you. A quiet letter from someone who cares for you. That without any reason, without any reward, someone still believes you’re more than enough.
+          So on this day, i want to leave something behind, a little piece of
+          love the world owes you. A quiet letter from someone who cares for
+          you. That without any reason, without any reward, someone still
+          believes you’re more than enough.
         </p>
 
         <p>— From the side of the story that never asked to be noticed</p>
+      </div>
     </div>
-  </div>
 
-  <script>
-    // LETTER
-    const envelope = document.getElementById("envelope");
-    const letter = document.getElementById("letter");
+    <script>
+      // LETTER
+      const envelope = document.getElementById("envelope");
+      const letter = document.getElementById("letter");
 
-    envelope.addEventListener("click", () => {
+      envelope.addEventListener("click", () => {
         envelope.style.display = "none";
         letter.classList.remove("hidden");
-    });
+      });
 
-    // PETAL ANIMATION
-    const canvas = document.getElementById("petalCanvas");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+      // PETAL ANIMATION
+      const canvas = document.getElementById("petalCanvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
 
-    let petals = [];
+      let petals = [];
 
-    function createPetals() {
+      function createPetals() {
         for (let i = 0; i < 30; i++) {
-            petals.push({
+          petals.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
             r: Math.random() * 10 + 5,
             d: Math.random() * 5,
-            angle: Math.random() * Math.PI * 2
-            });
+            angle: Math.random() * Math.PI * 2,
+          });
         }
-    }
+      }
 
-    function drawPetals() {
+      function drawPetals() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "#fff1f9";
 
-        petals.forEach(p => {
-            ctx.beginPath();
-            ctx.ellipse(p.x, p.y, p.r, p.r / 2, p.angle, 0, Math.PI * 2);
-            ctx.fill();
+        petals.forEach((p) => {
+          ctx.beginPath();
+          ctx.ellipse(p.x, p.y, p.r, p.r / 2, p.angle, 0, Math.PI * 2);
+          ctx.fill();
         });
 
         updatePetals();
         requestAnimationFrame(drawPetals);
-    }
+      }
 
-    function updatePetals() {
-        petals.forEach(p => {
-            p.y += 1 + p.d;
-            p.x += Math.sin(p.angle) * 0.5;
-            p.angle += 0.01;
+      function updatePetals() {
+        petals.forEach((p) => {
+          p.y += 1 + p.d;
+          p.x += Math.sin(p.angle) * 0.5;
+          p.angle += 0.01;
 
-            if (p.y > canvas.height) {
+          if (p.y > canvas.height) {
             p.y = -10;
             p.x = Math.random() * canvas.width;
-            }
+          }
         });
-    }
+      }
 
-    createPetals();
-    drawPetals();
-    
-    window.addEventListener("resize", () => {
+      createPetals();
+      drawPetals();
+
+      window.addEventListener("resize", () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-    });
-
-  </script>
-</body>
+      });
+    </script>
+  </body>
 </html>
