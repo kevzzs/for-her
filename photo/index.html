@@ -4,17 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>For u</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="icon" href="../image/batman.jpg" type="image/x-icon" />
     <style>
-      body {
-        margin: 0;
+      @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+      * {
         padding: 0;
-        background: linear-gradient(to bottom right, #fce1ec, #f9c5d1);
-        font-family: "Pacifico", cursive;
-        overflow-x: hidden;
+        margin: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: 'Edu NSW ACT Cursive', cursive;
+        margin: 0 100px 10px;
+        background: radial-gradient(
+          ellipse at bottom,
+          #1b2735 0%,
+          #090a0f 100%
+        );
       }
 
       /* Back Button */
@@ -32,7 +39,46 @@
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       }
 
-      /* Timeline Layout */
+      .stars::before,
+      .shooting-stars::before {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: white;
+        box-shadow: 1000px 200px white, 500px 300px white, 300px 100px white,
+          150px 400px white, 700px 250px white, 1200px 150px white,
+          400px 500px white, 900px 600px white, 200px 700px white;
+        animation: twinkle 5s infinite ease-in-out alternate;
+      }
+
+      /* Shooting stars (basic animation) */
+      @keyframes twinkle {
+        0% {
+          opacity: 0.2;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* Make canvas full screen */
+      #starsCanvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        display: block;
+        background: radial-gradient(
+          ellipse at bottom,
+          #1b2735 0%,
+          #090a0f 100%
+        );
+      }
+
+      /* Timeline Layout 
       .timeline {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -43,7 +89,6 @@
         text-align: center;
       }
 
-      /* Photo Frame */
       .photo-box {
         background: #fff;
         padding: 15px;
@@ -57,87 +102,309 @@
 
       .photo-box img {
         width: 100%;
-        height: auto; /* or 250px */
+        height: auto;
         object-fit: cover;
       }
 
-      /* Caption */
       .caption {
         font-size: 1.1rem;
         color: #7c4b5f;
         margin-top: 15px;
         font-style: italic;
       }
+      */
+      img {
+        max-width: 100%;
+        height: auto;
+        vertical-align: middle;
+        display: inline-block;
+        object-fit: cover;
+      }
 
-      /* Animation */
-      @keyframes fadeIn {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      .timeline > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .timeline > div > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 3px;
+        opacity: 0.70;
+        transition: opacity 0.3s ease;
+      }
+
+      .timeline {
+        display: grid;
+        grid-gap: 8px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-auto-rows: 300px;
+        grid-auto-flow: dense;
+      }
+
+      .timeline .wide {
+        grid-column: span 2;
+      }
+
+      .timeline .tall {
+        grid-row: span 2;
+      }
+
+      .timeline .blk {
+        grid-column: span 2;
+        grid-row: span 2;
       }
 
       .gallery-heading {
         text-align: center;
-        font-size: 1.8rem;
-        margin-top: 100px;
-        margin-bottom: 40px;
+        font-size: 2rem;
+        margin: 80px 0 150px;
         padding: 0 20px;
-        color: #8b4a57; /* Romantic plum */
-        font-family: "Pacifico", cursive;
+        color: #ffffff; /* Romantic plum */
         line-height: 1.4;
+        font-style: italic;
+      }
+
+      .top-warning {
+        flex-direction: column;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .top-warning p {
+        font-size: 2rem;
+        color: #f90101; /* Light pink */
+        font-weight: bold;
+      }
+
+      .top-warning button {
+        padding: 13px 30px;
+        background-color: #ffffff; /* Light pink */
+        color: #ff0000;
+        border: none;
+        border-radius: 40px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition:3s ease;
+      }
+
+      .timeline .text {
+        position: relative;
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 8px;
+        text-align: center;
+      }
+
+      .timeline .text > p {
+        color: #ffffff;
+        font-size: 1.1rem;
+        font-style: italic;
       }
     </style>
   </head>
   <body>
+    <canvas id="starsCanvas"></canvas>
     <!-- Back Button -->
     <a href="../main/index.html" class="back-btn">← Back</a>
 
     <!-- Music -->
-    <audio src="./image/Again - Your Lie in April OST [Piano Tutorial] - PianoDeuss.mp3" autoplay loop></audio>
-
+    <audio
+      id="bgMusic"
+      src="./image/Again - Your Lie in April OST [Piano Tutorial] - PianoDeuss.mp3"
+      autoplay
+      loop
+    ></audio>
+    <div class="top-warning">
+        <p>⚠️ DAHAN DAHAN LANG SA PAG SCROLL HAH!!!!! ⚠️</p>
+        <a href="#letter"><button>VIEW</button></a>
+    </div>
+    <span id="letter"></span>
     <h1 class="gallery-heading">
-      "You deserve to be framed like art - timeless, soft, and adored."
+      "Some people pose for the camera, but you on the other hand, make <br>every frame feel like poetry in motion."
     </h1>
 
     <!-- Timeline Container -->
     <div class="timeline">
-      <div class="photo-box">
-        <img src="./image/1.jpg" alt="Photo 1" />
-        <p class="caption">You smiled like the world finally made sense.</p>
+      <div class="tall">
+        <img src="./image/tall1.png" alt="Photo 1" />
       </div>
-
-      <div class="photo-box">
-        <img src="./image/2.jpg" alt="Photo 2" />
-        <p class="caption">They say art is rare — and you’re proof.</p>
+      <div>
+        <img src="./image/n1.png" alt="Photo 1" />
       </div>
-
-      <div class="photo-box">
-        <img src="./image/3.jpg" alt="Photo 3" />
-        <p class="caption">This moment? Worth a thousand quiet admirations.</p>
+      <div class="text">
+        <p>"Her beauty is not in symmetry, but in the way the universe pauses when she walks in."</p>
       </div>
-      <div class="photo-box">
-        <img src="./image/1.jpg" alt="Photo 3" />
-        <p class="caption">This moment? Worth a thousand quiet admirations.</p>
+      <div class="wide">
+        <img src="./image/wide1.png" alt="Photo 1" />
       </div>
-      <div class="photo-box">
-        <img src="./image/3.jpg" alt="Photo 3" />
-        <p class="caption">This moment? Worth a thousand quiet admirations.</p>
+      <div class="text wide">
+        <p>"She is not beautiful because of how she looks, but because <br>of how the world looks when she is in it."</p>
       </div>
-      <div class="photo-box">
-        <img src="./image/2.jpg" alt="Photo 3" />
-        <p class="caption">This moment? Worth a thousand quiet admirations.</p>
+      <div class="blk">
+        <img src="./image/b1.png" alt="Photo 1" />
       </div>
-      <div class="photo-box">
-        <img src="./image/3.jpg" alt="Photo 3" />
-        <p class="caption">This moment? Worth a thousand quiet admirations.</p>
+      <div>
+        <img src="./image/n2.png" alt="Photo 1" />
       </div>
-      <div class="photo-box">
-        <img src="./image/2.jpg" alt="Photo 3" />
-        <p class="caption">This moment? Worth a thousand quiet admirations.</p>
+      <div>
+        <img src="./image/n3.png" alt="Photo 1" />
+      </div>
+      <div>
+        <img src="./image/n4.png" alt="Photo 1" />
+      </div>
+      <div>
+        <img src="./image/3.jpg" alt="Photo 1" />
+      </div>
+      <div class="wide">
+        <img src="./image/wide2.png" alt="Photo 1" />
+      </div>
+      <div>
+        <img src="./image/n5.png" alt="Photo 1" />
+      </div>
+      <div class="text">
+        <p>"Her existence is proof that beauty is not meant to be owned, only witnessed."</p>
+      </div>
+      <div>
+        <img src="./image/n6.png" alt="Photo 1" />
+      </div>
+      <div class="wide">
+        <img src="./image/wide4.png" alt="Photo 1" />
+      </div>
+      <div>
+        <img src="./image/n7.png" alt="Photo 1" />
+      </div>
+      <div>
+        <img src="./image/n8.png" alt="Photo 1" />
+      </div>
+      <div class="text"> 
+        <p>"She is not admired like a painting, but felt like a truth you’ve always known but couldn’t explain."</p>
+      </div>
+      <div>
+        <img src="./image/n9.png" alt="Photo 1" />
+      </div>
+      <div class="tall">
+        <img src="./image/tall2.png" alt="Photo 1" />
+      </div>
+      <div class="wide">
+        <img src="./image/wide3.png" alt="Photo 1" />
+      </div>
+      <div>
+        <img src="./image/batman.jpg" alt="Photo 1" />
       </div>
 
       <!-- Add more photo-box divs for each photo -->
     </div>
+
+    <script>
+      const canvas = document.getElementById("starsCanvas");
+      const ctx = canvas.getContext("2d");
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      let stars = [];
+      let shootingStars = [];
+
+      function createStars() {
+        for (let i = 0; i < 100; i++) {
+          stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 1.5,
+            alpha: Math.random(),
+            dx: Math.random() * 0.2,
+            dy: Math.random() * 0.2,
+          });
+        }
+      }
+
+      function createShootingStar() {
+        shootingStars.push({
+          x: Math.random() * canvas.width,
+          y: (Math.random() * canvas.height) / 2,
+          length: Math.random() * 80 + 20,
+          speed: 4 + Math.random() * 4,
+          angle: Math.PI / 4,
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw stars
+        stars.forEach((star) => {
+          ctx.beginPath();
+          ctx.globalAlpha = star.alpha;
+          ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+          ctx.fillStyle = "#fff";
+          ctx.fill();
+
+          star.x += star.dx;
+          star.y += star.dy;
+
+          if (star.x > canvas.width || star.y > canvas.height) {
+            star.x = Math.random() * canvas.width;
+            star.y = 0;
+          }
+        });
+
+        // Draw shooting stars
+        shootingStars.forEach((s, index) => {
+          ctx.globalAlpha = 1;
+          ctx.beginPath();
+          ctx.moveTo(s.x, s.y);
+          ctx.lineTo(
+            s.x - s.length * Math.cos(s.angle),
+            s.y - s.length * Math.sin(s.angle)
+          );
+          ctx.strokeStyle = "white";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+
+          s.x += s.speed;
+          s.y += s.speed;
+
+          // Remove after it goes off screen
+          if (s.x > canvas.width || s.y > canvas.height) {
+            shootingStars.splice(index, 1);
+          }
+        });
+
+        requestAnimationFrame(draw);
+      }
+
+      // Shooting star spawn interval
+      setInterval(() => {
+        if (Math.random() < 0.5) {
+          createShootingStar();
+        }
+      }, 1000);
+
+      createStars();
+      draw();
+
+      // Resize handling
+      window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+
+      // Music & Scroll
+      const clickBtn = document.getElementById("clickBtn");
+      const bgMusic = document.getElementById("bgMusic");
+      const letterSection = document.getElementById("letter");
+
+      clickBtn.addEventListener("click", () => {
+        bgMusic.play();
+        letterSection.classList.remove("hidden");
+        letterSection.scrollIntoView({ behavior: "smooth" });
+      });
+    </script>
   </body>
 </html>
